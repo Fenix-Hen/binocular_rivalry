@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2024.2.4),
-    on Thu Nov 13 15:40:19 2025
+    on Fri Nov 14 18:33:54 2025
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -257,6 +257,18 @@ def setupDevices(expInfo, thisExp, win):
             deviceClass='keyboard',
             deviceName='key_resp',
         )
+    if deviceManager.getDevice('key_resp_4') is None:
+        # initialise key_resp_4
+        key_resp_4 = deviceManager.addDevice(
+            deviceClass='keyboard',
+            deviceName='key_resp_4',
+        )
+    if deviceManager.getDevice('key_resp_2') is None:
+        # initialise key_resp_2
+        key_resp_2 = deviceManager.addDevice(
+            deviceClass='keyboard',
+            deviceName='key_resp_2',
+        )
     # return True if completed successfully
     return True
 
@@ -395,6 +407,27 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         color=[1,1,1], colorSpace='rgb', opacity=None,
         flipHoriz=False, flipVert=False,
         texRes=128.0, interpolate=True, depth=0.0)
+    key_resp_4 = keyboard.Keyboard(deviceName='key_resp_4')
+    
+    # --- Initialize components for Routine "Probe" ---
+    ProbeImage = visual.ImageStim(
+        win=win,
+        name='ProbeImage', 
+        image='default.png', mask=None, anchor='center',
+        ori=0.0, pos=(0, 0), draggable=False, size=(0.5, 0.5),
+        color=[1,1,1], colorSpace='rgb', opacity=None,
+        flipHoriz=False, flipVert=False,
+        texRes=128.0, interpolate=True, depth=0.0)
+    
+    # --- Initialize components for Routine "ProbeQ" ---
+    ProbeRespIns = visual.TextStim(win=win, name='ProbeRespIns',
+        text="Which, if any, squares dissappeared?\n'w'= top square\n's'= bottom square\n'space'= both squares were present",
+        font='Arial',
+        pos=(0, 0), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        color='white', colorSpace='rgb', opacity=None, 
+        languageStyle='LTR',
+        depth=0.0);
+    key_resp_2 = keyboard.Keyboard(deviceName='key_resp_2')
     
     # create some handy timers
     
@@ -605,7 +638,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         Cue.status = NOT_STARTED
         continueRoutine = True
         # update component parameters for each repeat
-        CueText.setText(Cue)
+        CueText.setText(cue)
         # store start times for Cue
         Cue.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
         Cue.tStart = globalClock.getTime(format='float')
@@ -754,7 +787,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         if isinstance(trials, data.TrialHandler2) and thisTrial.thisN != trials.thisTrial.thisN:
             continueRoutine = False
         Blank.forceEnded = routineForceEnded = not continueRoutine
-        while continueRoutine and routineTimer.getTime() < 6.0:
+        while continueRoutine and routineTimer.getTime() < 8.0:
             # get current time
             t = routineTimer.getTime()
             tThisFlip = win.getFutureFlipTime(clock=routineTimer)
@@ -785,7 +818,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # if Visualization is stopping this frame...
             if Visualization.status == STARTED:
                 # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > Visualization.tStartRefresh + 6.0-frameTolerance:
+                if tThisFlipGlobal > Visualization.tStartRefresh + 8.0-frameTolerance:
                     # keep track of stop time/frame for later
                     Visualization.tStop = t  # not accounting for scr refresh
                     Visualization.tStopRefresh = tThisFlipGlobal  # on global time
@@ -841,18 +874,22 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         elif Blank.forceEnded:
             routineTimer.reset()
         else:
-            routineTimer.addTime(-6.000000)
+            routineTimer.addTime(-8.000000)
         
         # --- Prepare to start Routine "BR" ---
         # create an object to store info about Routine BR
         BR = data.Routine(
             name='BR',
-            components=[BRimages],
+            components=[BRimages, key_resp_4],
         )
         BR.status = NOT_STARTED
         continueRoutine = True
         # update component parameters for each repeat
         BRimages.setImage(image)
+        # create starting attributes for key_resp_4
+        key_resp_4.keys = []
+        key_resp_4.rt = []
+        _key_resp_4_allKeys = []
         # store start times for BR
         BR.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
         BR.tStart = globalClock.getTime(format='float')
@@ -878,7 +915,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         if isinstance(trials, data.TrialHandler2) and thisTrial.thisN != trials.thisTrial.thisN:
             continueRoutine = False
         BR.forceEnded = routineForceEnded = not continueRoutine
-        while continueRoutine and routineTimer.getTime() < 1.0:
+        while continueRoutine and routineTimer.getTime() < 8.0:
             # get current time
             t = routineTimer.getTime()
             tThisFlip = win.getFutureFlipTime(clock=routineTimer)
@@ -909,7 +946,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # if BRimages is stopping this frame...
             if BRimages.status == STARTED:
                 # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > BRimages.tStartRefresh + 1.0-frameTolerance:
+                if tThisFlipGlobal > BRimages.tStartRefresh + 8.0-frameTolerance:
                     # keep track of stop time/frame for later
                     BRimages.tStop = t  # not accounting for scr refresh
                     BRimages.tStopRefresh = tThisFlipGlobal  # on global time
@@ -919,6 +956,48 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     # update status
                     BRimages.status = FINISHED
                     BRimages.setAutoDraw(False)
+            
+            # *key_resp_4* updates
+            waitOnFlip = False
+            
+            # if key_resp_4 is starting this frame...
+            if key_resp_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                key_resp_4.frameNStart = frameN  # exact frame index
+                key_resp_4.tStart = t  # local t and not account for scr refresh
+                key_resp_4.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(key_resp_4, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'key_resp_4.started')
+                # update status
+                key_resp_4.status = STARTED
+                # keyboard checking is just starting
+                waitOnFlip = True
+                win.callOnFlip(key_resp_4.clock.reset)  # t=0 on next screen flip
+                win.callOnFlip(key_resp_4.clearEvents, eventType='keyboard')  # clear events on next screen flip
+            
+            # if key_resp_4 is stopping this frame...
+            if key_resp_4.status == STARTED:
+                # is it time to stop? (based on global clock, using actual start)
+                if tThisFlipGlobal > key_resp_4.tStartRefresh + 0.75-frameTolerance:
+                    # keep track of stop time/frame for later
+                    key_resp_4.tStop = t  # not accounting for scr refresh
+                    key_resp_4.tStopRefresh = tThisFlipGlobal  # on global time
+                    key_resp_4.frameNStop = frameN  # exact frame index
+                    # add timestamp to datafile
+                    thisExp.timestampOnFlip(win, 'key_resp_4.stopped')
+                    # update status
+                    key_resp_4.status = FINISHED
+                    key_resp_4.status = FINISHED
+            if key_resp_4.status == STARTED and not waitOnFlip:
+                theseKeys = key_resp_4.getKeys(keyList=['a','d','space'], ignoreKeys=["escape"], waitRelease=False)
+                _key_resp_4_allKeys.extend(theseKeys)
+                if len(_key_resp_4_allKeys):
+                    key_resp_4.keys = _key_resp_4_allKeys[-1].name  # just the last key pressed
+                    key_resp_4.rt = _key_resp_4_allKeys[-1].rt
+                    key_resp_4.duration = _key_resp_4_allKeys[-1].duration
+                    # a response ends the routine
+                    continueRoutine = False
             
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -959,13 +1038,287 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         BR.tStop = globalClock.getTime(format='float')
         BR.tStopRefresh = tThisFlipGlobal
         thisExp.addData('BR.stopped', BR.tStop)
+        # check responses
+        if key_resp_4.keys in ['', [], None]:  # No response was made
+            key_resp_4.keys = None
+        trials.addData('key_resp_4.keys',key_resp_4.keys)
+        if key_resp_4.keys != None:  # we had a response
+            trials.addData('key_resp_4.rt', key_resp_4.rt)
+            trials.addData('key_resp_4.duration', key_resp_4.duration)
         # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
         if BR.maxDurationReached:
             routineTimer.addTime(-BR.maxDuration)
         elif BR.forceEnded:
             routineTimer.reset()
         else:
-            routineTimer.addTime(-1.000000)
+            routineTimer.addTime(-8.000000)
+        
+        # --- Prepare to start Routine "Probe" ---
+        # create an object to store info about Routine Probe
+        Probe = data.Routine(
+            name='Probe',
+            components=[ProbeImage],
+        )
+        Probe.status = NOT_STARTED
+        continueRoutine = True
+        # update component parameters for each repeat
+        ProbeImage.setImage(image)
+        # store start times for Probe
+        Probe.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+        Probe.tStart = globalClock.getTime(format='float')
+        Probe.status = STARTED
+        thisExp.addData('Probe.started', Probe.tStart)
+        Probe.maxDuration = None
+        # keep track of which components have finished
+        ProbeComponents = Probe.components
+        for thisComponent in Probe.components:
+            thisComponent.tStart = None
+            thisComponent.tStop = None
+            thisComponent.tStartRefresh = None
+            thisComponent.tStopRefresh = None
+            if hasattr(thisComponent, 'status'):
+                thisComponent.status = NOT_STARTED
+        # reset timers
+        t = 0
+        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+        frameN = -1
+        
+        # --- Run Routine "Probe" ---
+        # if trial has changed, end Routine now
+        if isinstance(trials, data.TrialHandler2) and thisTrial.thisN != trials.thisTrial.thisN:
+            continueRoutine = False
+        Probe.forceEnded = routineForceEnded = not continueRoutine
+        while continueRoutine and routineTimer.getTime() < 0.4:
+            # get current time
+            t = routineTimer.getTime()
+            tThisFlip = win.getFutureFlipTime(clock=routineTimer)
+            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+            # update/draw components on each frame
+            
+            # *ProbeImage* updates
+            
+            # if ProbeImage is starting this frame...
+            if ProbeImage.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                ProbeImage.frameNStart = frameN  # exact frame index
+                ProbeImage.tStart = t  # local t and not account for scr refresh
+                ProbeImage.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(ProbeImage, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'ProbeImage.started')
+                # update status
+                ProbeImage.status = STARTED
+                ProbeImage.setAutoDraw(True)
+            
+            # if ProbeImage is active this frame...
+            if ProbeImage.status == STARTED:
+                # update params
+                pass
+            
+            # if ProbeImage is stopping this frame...
+            if ProbeImage.status == STARTED:
+                # is it time to stop? (based on global clock, using actual start)
+                if tThisFlipGlobal > ProbeImage.tStartRefresh + 0.4-frameTolerance:
+                    # keep track of stop time/frame for later
+                    ProbeImage.tStop = t  # not accounting for scr refresh
+                    ProbeImage.tStopRefresh = tThisFlipGlobal  # on global time
+                    ProbeImage.frameNStop = frameN  # exact frame index
+                    # add timestamp to datafile
+                    thisExp.timestampOnFlip(win, 'ProbeImage.stopped')
+                    # update status
+                    ProbeImage.status = FINISHED
+                    ProbeImage.setAutoDraw(False)
+            
+            # check for quit (typically the Esc key)
+            if defaultKeyboard.getKeys(keyList=["escape"]):
+                thisExp.status = FINISHED
+            if thisExp.status == FINISHED or endExpNow:
+                endExperiment(thisExp, win=win)
+                return
+            # pause experiment here if requested
+            if thisExp.status == PAUSED:
+                pauseExperiment(
+                    thisExp=thisExp, 
+                    win=win, 
+                    timers=[routineTimer], 
+                    playbackComponents=[]
+                )
+                # skip the frame we paused on
+                continue
+            
+            # check if all components have finished
+            if not continueRoutine:  # a component has requested a forced-end of Routine
+                Probe.forceEnded = routineForceEnded = True
+                break
+            continueRoutine = False  # will revert to True if at least one component still running
+            for thisComponent in Probe.components:
+                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                    continueRoutine = True
+                    break  # at least one component has not yet finished
+            
+            # refresh the screen
+            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+                win.flip()
+        
+        # --- Ending Routine "Probe" ---
+        for thisComponent in Probe.components:
+            if hasattr(thisComponent, "setAutoDraw"):
+                thisComponent.setAutoDraw(False)
+        # store stop times for Probe
+        Probe.tStop = globalClock.getTime(format='float')
+        Probe.tStopRefresh = tThisFlipGlobal
+        thisExp.addData('Probe.stopped', Probe.tStop)
+        # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
+        if Probe.maxDurationReached:
+            routineTimer.addTime(-Probe.maxDuration)
+        elif Probe.forceEnded:
+            routineTimer.reset()
+        else:
+            routineTimer.addTime(-0.400000)
+        
+        # --- Prepare to start Routine "ProbeQ" ---
+        # create an object to store info about Routine ProbeQ
+        ProbeQ = data.Routine(
+            name='ProbeQ',
+            components=[ProbeRespIns, key_resp_2],
+        )
+        ProbeQ.status = NOT_STARTED
+        continueRoutine = True
+        # update component parameters for each repeat
+        # create starting attributes for key_resp_2
+        key_resp_2.keys = []
+        key_resp_2.rt = []
+        _key_resp_2_allKeys = []
+        # store start times for ProbeQ
+        ProbeQ.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
+        ProbeQ.tStart = globalClock.getTime(format='float')
+        ProbeQ.status = STARTED
+        thisExp.addData('ProbeQ.started', ProbeQ.tStart)
+        ProbeQ.maxDuration = None
+        # keep track of which components have finished
+        ProbeQComponents = ProbeQ.components
+        for thisComponent in ProbeQ.components:
+            thisComponent.tStart = None
+            thisComponent.tStop = None
+            thisComponent.tStartRefresh = None
+            thisComponent.tStopRefresh = None
+            if hasattr(thisComponent, 'status'):
+                thisComponent.status = NOT_STARTED
+        # reset timers
+        t = 0
+        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+        frameN = -1
+        
+        # --- Run Routine "ProbeQ" ---
+        # if trial has changed, end Routine now
+        if isinstance(trials, data.TrialHandler2) and thisTrial.thisN != trials.thisTrial.thisN:
+            continueRoutine = False
+        ProbeQ.forceEnded = routineForceEnded = not continueRoutine
+        while continueRoutine:
+            # get current time
+            t = routineTimer.getTime()
+            tThisFlip = win.getFutureFlipTime(clock=routineTimer)
+            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+            # update/draw components on each frame
+            
+            # *ProbeRespIns* updates
+            
+            # if ProbeRespIns is starting this frame...
+            if ProbeRespIns.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                ProbeRespIns.frameNStart = frameN  # exact frame index
+                ProbeRespIns.tStart = t  # local t and not account for scr refresh
+                ProbeRespIns.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(ProbeRespIns, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'ProbeRespIns.started')
+                # update status
+                ProbeRespIns.status = STARTED
+                ProbeRespIns.setAutoDraw(True)
+            
+            # if ProbeRespIns is active this frame...
+            if ProbeRespIns.status == STARTED:
+                # update params
+                pass
+            
+            # *key_resp_2* updates
+            waitOnFlip = False
+            
+            # if key_resp_2 is starting this frame...
+            if key_resp_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                key_resp_2.frameNStart = frameN  # exact frame index
+                key_resp_2.tStart = t  # local t and not account for scr refresh
+                key_resp_2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(key_resp_2, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'key_resp_2.started')
+                # update status
+                key_resp_2.status = STARTED
+                # keyboard checking is just starting
+                waitOnFlip = True
+                win.callOnFlip(key_resp_2.clock.reset)  # t=0 on next screen flip
+                win.callOnFlip(key_resp_2.clearEvents, eventType='keyboard')  # clear events on next screen flip
+            if key_resp_2.status == STARTED and not waitOnFlip:
+                theseKeys = key_resp_2.getKeys(keyList=['w','s','space'], ignoreKeys=["escape"], waitRelease=False)
+                _key_resp_2_allKeys.extend(theseKeys)
+                if len(_key_resp_2_allKeys):
+                    key_resp_2.keys = _key_resp_2_allKeys[-1].name  # just the last key pressed
+                    key_resp_2.rt = _key_resp_2_allKeys[-1].rt
+                    key_resp_2.duration = _key_resp_2_allKeys[-1].duration
+                    # a response ends the routine
+                    continueRoutine = False
+            
+            # check for quit (typically the Esc key)
+            if defaultKeyboard.getKeys(keyList=["escape"]):
+                thisExp.status = FINISHED
+            if thisExp.status == FINISHED or endExpNow:
+                endExperiment(thisExp, win=win)
+                return
+            # pause experiment here if requested
+            if thisExp.status == PAUSED:
+                pauseExperiment(
+                    thisExp=thisExp, 
+                    win=win, 
+                    timers=[routineTimer], 
+                    playbackComponents=[]
+                )
+                # skip the frame we paused on
+                continue
+            
+            # check if all components have finished
+            if not continueRoutine:  # a component has requested a forced-end of Routine
+                ProbeQ.forceEnded = routineForceEnded = True
+                break
+            continueRoutine = False  # will revert to True if at least one component still running
+            for thisComponent in ProbeQ.components:
+                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                    continueRoutine = True
+                    break  # at least one component has not yet finished
+            
+            # refresh the screen
+            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+                win.flip()
+        
+        # --- Ending Routine "ProbeQ" ---
+        for thisComponent in ProbeQ.components:
+            if hasattr(thisComponent, "setAutoDraw"):
+                thisComponent.setAutoDraw(False)
+        # store stop times for ProbeQ
+        ProbeQ.tStop = globalClock.getTime(format='float')
+        ProbeQ.tStopRefresh = tThisFlipGlobal
+        thisExp.addData('ProbeQ.stopped', ProbeQ.tStop)
+        # check responses
+        if key_resp_2.keys in ['', [], None]:  # No response was made
+            key_resp_2.keys = None
+        trials.addData('key_resp_2.keys',key_resp_2.keys)
+        if key_resp_2.keys != None:  # we had a response
+            trials.addData('key_resp_2.rt', key_resp_2.rt)
+            trials.addData('key_resp_2.duration', key_resp_2.duration)
+        # the Routine "ProbeQ" was not non-slip safe, so reset the non-slip timer
+        routineTimer.reset()
         thisExp.nextEntry()
         
     # completed 5.0 repeats of 'trials'
